@@ -43,7 +43,7 @@ Here are some of the commonly used formats:
 ### generate a yaml template
 Whatever the kind of k8s resource, it is possible to generate simply a yaml template into a file :
 ----
-k run my-pod --image=nginx --restart=Never --dry-run -o yaml > my-pod.yaml
+k run my-pod --image=nginx --restart=Never --dry-run=client -o yaml > my-pod.yaml
 ----
 
 Then, this file can be completed and used to create the resource :
