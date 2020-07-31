@@ -97,13 +97,13 @@ nc -zv <service_or_ip> <port>
 ### Pods
 **Generate yaml**
 ----
-k run my-pod --image=nginx --restart=Never --dry-run -o yaml
+k run my-pod --image=nginx --restart=Never --dry-run=client -o yaml
 ----
 
 ### Jobs
 **Generate yaml**
 ----
-k run my-job --image=nginx --restart=OnFailure --dry-run -o yaml
+k run my-job --image=nginx --restart=OnFailure --dry-run=client  -o yaml
 ----
 
 ### Cronjobs
@@ -115,8 +115,8 @@ k run my-cronjob --image=nginx --restart=OnFailure --schedule="*/15 * * * *" --d
 ### Deployments
 **Generate yaml**
 ----
-k run my-deploy --image=nginx --dry-run -o yaml
-k create deploy my-deploy --image=nginx -o yaml --dry-run
+k run my-deploy --image=nginx --dry-run=client  -o yaml
+k create deploy my-deploy --image=nginx -o yaml --dry-run=client 
 ----
 
 **Update the replicas**
@@ -127,15 +127,15 @@ k scale deploy my-deploy --replicas=3
 ### Service
 **Generate yaml**
 ----
-k expose pod nginx --port=8080 --name nginx-service --dry-run -o yaml
-k create service clusterip nginx --tcp=8080:8080 --dry-run -o yaml
+k expose pod nginx --port=8080 --name nginx-service --dry-run =client -o yaml
+k create service clusterip nginx --tcp=8080:8080 --dry-run=client  -o yaml
 ----
 
 
 ### Namespaces
 **Generate yaml**
 ----
-k create namespace my-namespace --dry-run -o yaml
+k create namespace my-namespace --dry-run=client  -o yaml
 ----
 
 **Specify a namespace**
@@ -148,10 +148,10 @@ k get pods --all-namespaces
 ### Configmaps
 **Generate yaml**
 ----
-k create cm my-cm --from-literal MY_ENV=my_value -o yaml --dry-run
+k create cm my-cm --from-literal MY_ENV=my_value -o yaml --dry-run=client 
 
 echo "MY_ENV=my_value" > envs.txt
-k create cm my-cm --from-file envs.txt -o yaml --dry-run
+k create cm my-cm --from-file envs.txt -o yaml --dry-run=client 
 ----
 
 **Reference a cm to a pod**
@@ -181,10 +181,10 @@ volumes:
 ### Secrets
 **Generate yaml**
 ----
-k create secret generic my-secret --from-literal MY_ENV=my_value -o yaml --dry-run
+k create secret generic my-secret --from-literal MY_ENV=my_value -o yaml --dry-run=client 
 
 echo "MY_ENV=my_value" > envs.txt
-k create secret generic my-secret --from-file envs.txt -o yaml --dry-run
+k create secret generic my-secret --from-file envs.txt -o yaml --dry-run=client 
 ----
 
 **Reference a cm to a pod**
@@ -251,7 +251,7 @@ A service account provides an identity for processes that run in a Pod.
 
 **Generate yaml**
 ----
-k create sa my-sa --dry-run -o yaml
+k create sa my-sa --dry-run=client  -o yaml
 ----
 
 **Reference a service account**
